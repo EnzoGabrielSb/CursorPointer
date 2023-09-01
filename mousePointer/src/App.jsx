@@ -7,13 +7,13 @@ function App() {
     positionInX: 0,
     positionInY: 0,
   });
+  const [color, setColor] = useState("red");
 
   useEffect(() => {
     console.log("cambio del valor active");
 
     const handleMoves = (event) => {
       const { clientX, clientY } = event;
-      console.log("Movimiento del mouse", { clientX, clientY });
       setPosition({
         positionInX: clientX,
         positionInY: clientY,
@@ -41,7 +41,7 @@ function App() {
       <div
         style={{
           position: "absolute",
-          backgroundColor: "#09f",
+          backgroundColor: color,
           borderRadius: "50%",
           opacity: 0.8,
           pointerEvents: "none",
@@ -57,6 +57,13 @@ function App() {
       <button onClick={() => setActive(!active)}>
         {active ? "Desactivar" : "Activar"} seguir puntero.
       </button>
+
+      <section
+        onClick={() => setColor(color === "blue" ? "red" : "blue")}
+        style={{ marginTop: "35px" }}
+      >
+        <button>Cambia de color {color ? "azul" : "rojo"}.</button>
+      </section>
     </>
   );
 }
